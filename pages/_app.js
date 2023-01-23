@@ -1,5 +1,20 @@
 import '../styles/globals.css'
+import { wrapper } from '../lib/store'
+import Layout from '../components/Layout'
+import {persistor, store} from '../lib/store'
+import { PersistGate } from 'redux-persist/integration/react';
+import withRedux from 'next-redux-wrapper'
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }) {
+  return (
+    <Layout {...pageProps}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Component {...pageProps} />
+        </PersistGate>
+    </Layout>
+  )
 }
+
+const makeStore = () => store
+export default withRedux(makeStore)(MyApp)
+
