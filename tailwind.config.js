@@ -6,7 +6,20 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        dropdown: {
+          '0%': {width: '0', height: '0'},
+          '50%': {height: '15rem'},
+          '100%': {width: '8rem'}
+        }
+      },
+      animation: {
+        dropdown: 'dropdown 0.2s ease-in-out'
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
