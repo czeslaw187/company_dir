@@ -1,21 +1,25 @@
 import { useState } from "react";
 import { useForm } from 'react-hook-form'
 
-function AddEmployee({onChange, onSubmit}) {
+function AddEmployee({onChange, input}) {
     const [drop,setDrop] = useState(false)
-    const departments = ['accounting', 'marketing', 'it', 'hr']
-    const locations = ['London', 'Birmingham', 'Manchester']
+    const departments = []
+    const locations = []
     const {
         register,
         handleSubmit,
-        formState: {errors}
+        formState: {errors},
+        reset
       } = useForm({
         defaultValues: {
           'department': '',
           'location': ''
         }
       })
-
+    const onSubmit =()=> {
+        console.log(input)
+        reset()
+    }     
     return ( 
         <div>
             <div className='flex flex-col text-black'>
@@ -67,7 +71,7 @@ function AddEmployee({onChange, onSubmit}) {
                     }              
                     </select>
                     {errors.department && errors.department.type === 'required' && (
-                        <p className='text-red-500 text-md font-bold'>Department required</p>
+                        <p className='text-red-500 text-md font-bold'>Location required</p>
                     )}
                     <button type="submit" className='w-[7rem] h-[3rem] mb-2 rounded-md bg-amber-200 hover:bg-amber-300 mx-auto mt-5 shadow-lg active:shadow-black active:shadow-inner'>Add Person</button>
                 </form>

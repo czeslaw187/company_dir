@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddLocation from "../components/AddLocation";
+import AddLocation from "../components/Location/AddLocation";
 
 function Locations() {
     const [input,setInput] = useState({})

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddDepartment from "../components/AddDepartment";
+import AddDepartment from "../components/Department/AddDepartment";
 
 function Departments() {
     const [input,setInput] = useState({})

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../lib/userSlice'
 import { useEffect, useState } from 'react'
 
-import AddEmployee from '../components/AddEmployee'
+import AddEmployee from '../components/Employee/AddEmployee'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,14 +19,12 @@ export default function Home() {
     const {name, value} = e.target
     setInput(values=>({...values, [name]:value}))
   }
-  const onSubmit =()=> {
-    console.log(input)
-  }
+  
   const user = useSelector(state=>state.users.users)
   
   return (
     <div>
-      <AddEmployee onChange={onChange} onSubmit={onSubmit}/>
+      <AddEmployee onChange={onChange} input={input}/>
     </div>
   )
 }
