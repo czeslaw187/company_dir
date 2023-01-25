@@ -25,7 +25,7 @@ function AddEmployee({onChange, onSubmit}) {
                         Add Employee
                 </button>
                 
-                <div className={drop ? 'w-fit h-fit bg-amber-50 mx-auto animate-dropdown rounded-md flex flex-col' : 'hidden'}>
+                <div className={drop ? 'w-5/12 h-fit bg-amber-50 mx-auto animate-dropdown rounded-md flex flex-col' : 'hidden'}>
                 <button type="button" 
                         onClick={()=>{setDrop(!drop)}}
                         className='ml-auto mr-3 mt-3 text-black font-bold hover:scale-125 transition duration-500 ease-in-out'>

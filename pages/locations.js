@@ -1,19 +1,19 @@
 import { useState } from "react";
+import AddLocation from "../components/AddLocation";
 
 function Locations() {
-    const [drop,setDrop] = useState(false)
+    const [input,setInput] = useState({})
+    const onChange =(e)=> {
+        const {name, value} = e.target
+        setInput(values=>({
+            ...values,
+            [name]:value
+        }))
+    }
     
     return ( 
-        <div className="flex flex-col text-black">
-            <button type="button" 
-                className='w-[8rem] h-[4rem] my-5 shadow-xl rounded-sm mx-auto text-slate-500 bg-amber-200 hover:bg-amber-400 active:shadow-black active:shadow-inner'
-                onClick={()=>{setDrop(!drop)}}>
-                  Add Location
-            </button>
-
-            <div className={drop ? 'w-5/12 h-[32rem] bg-amber-50 mx-auto animate-dropdown rounded-md flex flex-col' : 'hidden'}>
-                
-            </div>
+        <div>
+            <AddLocation onChange={onChange} input={input}/>
         </div>
      );
 }

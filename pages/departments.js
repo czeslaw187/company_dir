@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import AddDepartment from "../components/AddDepartment";
 
 function Departments() {

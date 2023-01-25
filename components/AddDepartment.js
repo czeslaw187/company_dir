@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 
 function AddDepartment({onChange, input}) {
     const [drop,setDrop] = useState(false)
