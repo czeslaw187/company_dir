@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import 'bootstrap/dist/css/bootstrap.css'
 import { wrapper } from '../lib/store'
 import Layout from '../components/Layout'
 import {persistor, store} from '../lib/store'

@@ -44,6 +44,7 @@ export default function Home() {
                 onClick={()=>{setDrop(!drop)}}>
                   Add Employee
         </button>
+        
         <div className={drop ? 'w-5/12 h-[32rem] bg-amber-50 mx-auto animate-dropdown rounded-md flex flex-col' : 'hidden'}>
           <button type="button" 
                   onClick={()=>{setDrop(!drop)}}
