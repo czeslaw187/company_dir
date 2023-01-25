@@ -30,16 +30,6 @@ function NavBar() {
                                 )
                             })
                         }
-                        {/* <NavItem className="ml-auto mr-3 my-3 hover:underline">
-                            <Link href={'/departments'} style={{textDecoration: 'none', color: 'black'}}>
-                                Departments
-                            </Link>
-                        </NavItem>
-                        <NavItem className="ml-auto mr-3 my-3 hover:underline">
-                            <Link href={'/locations'} style={{textDecoration: 'none', color: 'black'}}>
-                                Locations
-                            </Link>
-                        </NavItem> */}
                     </Nav>
                 </Collapse>
             </Navbar>
