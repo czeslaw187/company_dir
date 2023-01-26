@@ -46,10 +46,11 @@ function Locations() {
             <div className="w-full h-fit">
                 {locations && locations.map((el,id)=>{
                     return (
-                        <div key={id} className="w-full h-[3rem] my-2 flex flex-row justify-between items-center border-2 rounded-lg shadow-md">
+                        <div key={id} className="w-full h-[3rem] my-2 grid grid-flow-row grid-cols-4 justify-between items-center border-2 rounded-lg shadow-md">
                             <h1 className="text-lg ml-5 my-1">{el.name}</h1>
-                            <h1 className="text-lg">Number of employees: </h1>
-                            <div className="mr-3 transition duration-500 ease-in-out hover:scale-150 cursor-pointer">
+                            <h1 className="text-sm my-0 text-center">Number of employees: </h1>
+                            <h1></h1>
+                            <div className="mr-3 transition duration-300 ease-in-out hover:scale-125 cursor-pointer text-center">
                                 <button type="button" onClick={()=>{toggle(); setLocId(el.id)}}>
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
