@@ -38,7 +38,7 @@ function Locations() {
         dispatch(fetchLocations)
     }
     const locations = useSelector(state=>state.users.locations)
-    const users = useSelector(state=>state.users.users)
+    const users = useSelector(state=>state.users)
     console.log(users,'locations')
 
     return ( 

@@ -5,7 +5,8 @@ export default async function fetchLocations(req, res) {
     await client.connect()
     try {
         let response = await client.query('SELECT id, name FROM location')
-        res.json(response)
+        let resp = {message: 'ok', arr: response.rows}
+        res.json(resp)
     } catch (error) {
         return res.json({message: error.message})
     } finally {
