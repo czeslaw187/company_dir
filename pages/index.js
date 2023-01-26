@@ -11,9 +11,9 @@ export default function Home() {
   const dispatch = useDispatch()
   const [input,setInput] = useState('')
   
-  useEffect(()=>{
-    dispatch(setUser({name:'Grzegorz'}))
-  },[])
+  // useEffect(()=>{
+  //   dispatch()
+  // },[])
 
   const onChange =(e)=> {
     const {name, value} = e.target

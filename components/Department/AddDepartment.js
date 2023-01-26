@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-function AddDepartment({onChange, input}) {
+function AddDepartment({onChange, input, deps}) {
     const [drop,setDrop] = useState(false)
 
     const {
@@ -19,7 +19,7 @@ function AddDepartment({onChange, input}) {
         reset()
     }
 
-    const locations = ['London', 'Birmingham', 'Manchester']
+    const locations = deps.locations
     return ( 
         <div>
             <div className="flex flex-col text-black">
@@ -45,7 +45,7 @@ function AddDepartment({onChange, input}) {
                     <select {...register('location',{required:true})} onChange={onChange}>
                         {
                             locations && locations.map((el,id)=>{
-                                return <option key={id} value={el}>{el}</option>
+                                return <option key={id} value={el.name}>{el.name}</option>
                             })
                         }
                     </select>

@@ -21,7 +21,6 @@ function Locations() {
         }))
     }
     
-    const users = useSelector(state=>state.users.users)
     const dispatch = useDispatch()
     
     useEffect(()=>{
@@ -30,7 +29,6 @@ function Locations() {
     
     const toggle =()=> {
         setIsOpen(!isOpen)
-        console.log(isOpen,'isOpen')
     }
     
     
@@ -40,11 +38,12 @@ function Locations() {
         dispatch(fetchLocations)
     }
     const locations = useSelector(state=>state.users.locations)
-    console.log(locations,'locations')
+    const users = useSelector(state=>state.users.users)
+    console.log(users,'locations')
 
     return ( 
         <div>
-            <AddLocation onChange={onChange} input={input} fetchLocations={fetchLocations} locId={locId}/>
+            <AddLocation onChange={onChange} input={input} fetchLocations={fetchLocations} />
 
             <Warning warningText={'Are you sure you want to delete that location ?'} isOpen={isOpen} toggle={toggle} handleDelete={handleDelete} locId={locId}/>
 
@@ -54,6 +53,7 @@ function Locations() {
                         <>
                         <div key={id} className="w-full h-[3rem] my-2 flex flex-row justify-between items-center border-2 rounded-lg shadow-md">
                             <h1 key={id} className="text-lg ml-5 my-1">{el.name}</h1>
+                            <h1 className="text-lg">Number of employees: </h1>
                             <div className="mr-3 transition duration-500 ease-in-out hover:scale-150 cursor-pointer">
                                 <button type="button" onClick={()=>{toggle(); setLocId(el.id)}}>
                                     <FontAwesomeIcon key={id} icon={faTrash} />
