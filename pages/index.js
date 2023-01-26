@@ -10,10 +10,6 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const dispatch = useDispatch()
   const [input,setInput] = useState('')
-  
-  // useEffect(()=>{
-  //   dispatch()
-  // },[])
 
   const onChange =(e)=> {
     const {name, value} = e.target

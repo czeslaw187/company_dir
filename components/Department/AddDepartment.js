@@ -18,14 +18,16 @@ function AddDepartment({onChange, input, deps}) {
             'location':''
         }
     })
+    
     const onSubmit =()=> {
         console.log(input)
-        reset()
         dispatch(addNewDepartment(input.title, input.location))
+        reset()
         dispatch(fetchDepartments())
     }
-    console.log(input,'departments')
+
     const locations = deps.locations
+
     return ( 
         <div>
             <div className="flex flex-col text-black">

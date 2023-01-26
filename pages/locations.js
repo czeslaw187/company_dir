@@ -7,8 +7,6 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteOneLocation } from "../lib/userSlice";
 import Warning from "../components/Warning";
 
-
-
 function Locations() {
     const [input,setInput] = useState({})
     const [isOpen,setIsOpen] = useState(false)
@@ -31,7 +29,6 @@ function Locations() {
         setIsOpen(!isOpen)
     }
     
-    
     const handleDelete =(id)=> {
         setIsOpen(!isOpen)
         dispatch(deleteOneLocation(id))
@@ -39,7 +36,6 @@ function Locations() {
     }
     const locations = useSelector(state=>state.users.locations)
     const users = useSelector(state=>state.users)
-    console.log(users,'locations')
 
     return ( 
         <div>
@@ -50,18 +46,15 @@ function Locations() {
             <div className="w-full h-fit">
                 {locations && locations.map((el,id)=>{
                     return (
-                        <>
                         <div key={id} className="w-full h-[3rem] my-2 flex flex-row justify-between items-center border-2 rounded-lg shadow-md">
-                            <h1 key={id} className="text-lg ml-5 my-1">{el.name}</h1>
+                            <h1 className="text-lg ml-5 my-1">{el.name}</h1>
                             <h1 className="text-lg">Number of employees: </h1>
                             <div className="mr-3 transition duration-500 ease-in-out hover:scale-150 cursor-pointer">
                                 <button type="button" onClick={()=>{toggle(); setLocId(el.id)}}>
-                                    <FontAwesomeIcon key={id} icon={faTrash} />
+                                    <FontAwesomeIcon icon={faTrash} />
                                 </button>
                             </div>
                         </div>
-                        
-                        </>
                     )
                 })}
             </div>
