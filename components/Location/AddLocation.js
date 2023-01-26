@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addNewLocation } from "../../lib/userSlice";
 
-function AddLocation({onChange, input}) {
+function AddLocation({onChange, input, fetchLocations}) {
     const [drop,setDrop] = useState(false)
+    const dispatch = useDispatch()
 
     const {
         register,
@@ -17,7 +20,9 @@ function AddLocation({onChange, input}) {
 
     const onSubmit =()=> {
         console.log(input)
+        dispatch(addNewLocation(input.location))
         reset()
+        dispatch(fetchLocations())
     }
     return ( 
         <div>
