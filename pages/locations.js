@@ -35,7 +35,7 @@ function Locations() {
     const handleDelete =(id)=> {
         setIsOpen(!isOpen)
         dispatch(deleteOneLocation(id))
-        dispatch(fetchLocations)
+        dispatch(fetchLocations())
     }
     const locations = useSelector(state=>state.users.locations)
     const users = useSelector(state=>state.users)

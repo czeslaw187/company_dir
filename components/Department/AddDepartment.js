@@ -1,8 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { addNewDepartment } from "../../lib/userSlice";
+import { useDispatch } from "react-redux";
+import { fetchDepartments } from "../../lib/userSlice";
 
 function AddDepartment({onChange, input, deps}) {
     const [drop,setDrop] = useState(false)
+    const dispatch = useDispatch()
 
     const {
         register,
@@ -17,8 +21,10 @@ function AddDepartment({onChange, input, deps}) {
     const onSubmit =()=> {
         console.log(input)
         reset()
+        dispatch(addNewDepartment(input.title, input.location))
+        dispatch(fetchDepartments())
     }
-
+    console.log(input,'departments')
     const locations = deps.locations
     return ( 
         <div>
@@ -29,7 +35,7 @@ function AddDepartment({onChange, input, deps}) {
                   Add Department
             </button>
 
-            <div className={drop ? 'w-5/12 h-[32rem] bg-amber-50 mx-auto animate-dropdown rounded-md flex flex-col shadow-md' : 'hidden'}>
+            <div className={drop ? 'w-5/12 h-fit bg-amber-50 mx-auto animate-dropdown rounded-md flex flex-col shadow-md' : 'hidden'}>
                 <button type="button" 
                     onClick={()=>{setDrop(!drop)}}
                     className='ml-auto mr-3 mt-3 text-black font-bold hover:scale-125 transition duration-500 ease-in-out'>
@@ -45,7 +51,7 @@ function AddDepartment({onChange, input, deps}) {
                     <select {...register('location',{required:true})} onChange={onChange}>
                         {
                             locations && locations.map((el,id)=>{
-                                return <option key={id} value={el.name}>{el.name}</option>
+                                return <option key={id} value={el.id}>{el.name}</option>
                             })
                         }
                     </select>
