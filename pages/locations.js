@@ -34,9 +34,20 @@ function Locations() {
         dispatch(deleteOneLocation(id))
         dispatch(fetchLocations())
     }
+
     const locations = useSelector(state=>state.users.locations)
     const users = useSelector(state=>state.users)
-
+    const departments = useSelector(state=>state.users.departments)
+    
+    const countDepartments =(deps)=> {
+        let numb = 0
+        for (let x in deps) {
+            numb += 1
+        }
+        return numb
+    } 
+    let numOfDeps = countDepartments(departments)
+    console.log(departments,'num')
     return ( 
         <div>
             <AddLocation onChange={onChange} input={input} fetchLocations={fetchLocations} />
@@ -48,8 +59,8 @@ function Locations() {
                     return (
                         <div key={id} className="w-full h-[3rem] my-2 grid grid-flow-row grid-cols-4 justify-between items-center border-2 rounded-lg shadow-md">
                             <h1 className="text-lg ml-5 my-1">{el.name}</h1>
-                            <h1 className="text-sm my-0 text-center">Number of employees: </h1>
-                            <h1></h1>
+                            <h1 className="text-sm my-0 text-center">No Employees: </h1>
+                            <h1 className="text-sm text-center">No Departments: {countDepartments(departments.filter(it=>{return it.locationid == el.id}))}</h1>
                             <div className="mr-3 transition duration-300 ease-in-out hover:scale-125 cursor-pointer text-center">
                                 <button type="button" onClick={()=>{toggle(); setLocId(el.id)}}>
                                     <FontAwesomeIcon icon={faTrash} />

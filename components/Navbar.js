@@ -24,7 +24,7 @@ function NavBar() {
                                 return (
                                     <NavItem key={id} className="ml-auto mr-3 my-3 hover:underline">
                                         <Link href={`/${el ==='employees' ? '' : el}`} style={{textDecoration: 'none', color: 'black'}}>
-                                            {el.toLocaleUpperCase()}
+                                            {el.charAt(0).toLocaleUpperCase() + el.slice(1)}
                                         </Link>
                                     </NavItem>
                                 )
