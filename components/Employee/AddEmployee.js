@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useForm } from 'react-hook-form'
 
-function AddEmployee({onChange, input}) {
+function AddEmployee({onChange, input, users}) {
     const [drop,setDrop] = useState(false)
-    const departments = []
-    const locations = []
+    console.log(users,'users')
     const {
         register,
         handleSubmit,
@@ -54,8 +53,8 @@ function AddEmployee({onChange, input}) {
                     <label>Department</label>
                     <select name='department' {...register('department', {required: true})} onChange={onChange}>
                     {
-                        departments && departments.map((el,id)=>{
-                        return <option key={id} value={el}>{el}</option>
+                        users.departments && users.departments.map((el,id)=>{
+                        return <option key={id} value={el.depid}>{el.title}</option>
                         })
                     }           
                     </select>
@@ -65,8 +64,8 @@ function AddEmployee({onChange, input}) {
                     <label>Location</label>
                     <select name='location' {...register('location',{required: true})} onChange={onChange}>
                     {
-                        locations && locations.map((el,id)=>{
-                        return <option key={id} value={el}>{el}</option>
+                        users.locations && users.locations.map((el,id)=>{
+                        return <option key={id} value={el.id}>{el.name}</option>
                         })
                     }              
                     </select>

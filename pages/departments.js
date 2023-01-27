@@ -51,7 +51,7 @@ function Departments() {
                         <div key={id} className="w-full h-[3rem] m-2 grid grid-flow-row grid-cols-4 justify-between items-center border-2 rounded-lg shadow-md">
                             <h1 className="text-xl ml-5 my-0">{el.title}</h1>
                             <h1 className="text-sm my-0 text-center">Number of employees: </h1>
-                            <h1 className="text-sm my-0 text-center">Location: {el.location}</h1>
+                            <h1 className="text-sm ml-5 my-0 text-justify">Location: {el.location}</h1>
                             <div className="transition duration-300 ease-in hover:scale-125 cursor-pointer text-center mr-5">
                                 <button type="button" onClick={()=>{toggle(); setLocId(el.depid)}}>
                                     <FontAwesomeIcon key={id} icon={faTrash} />
