@@ -47,7 +47,6 @@ function Locations() {
         return numb
     } 
     let numOfDeps = countDepartments(departments)
-    console.log(departments,'num')
     return ( 
         <div>
             <AddLocation onChange={onChange} input={input} fetchLocations={fetchLocations} />
