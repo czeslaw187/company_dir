@@ -1,12 +1,16 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { addNewDepartment } from "../../lib/userSlice";
 import { useDispatch } from "react-redux";
 import { fetchDepartments } from "../../lib/userSlice";
-
+import { fetchLocations } from "../../lib/userSlice";
 function AddDepartment({onChange, input, deps}) {
     const [drop,setDrop] = useState(false)
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(fetchLocations())
+    },[])
 
     const {
         register,

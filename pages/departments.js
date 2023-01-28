@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import AddDepartment from "../components/Department/AddDepartment";
 import { fetchDepartments } from "../lib/userSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLocations } from "../lib/userSlice";
 import Warning from "../components/Warning";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -22,7 +21,6 @@ function Departments() {
 
     useEffect(()=>{
         dispatch(fetchDepartments())
-        dispatch(fetchLocations())
     },[])
 
     const toggle =()=> {

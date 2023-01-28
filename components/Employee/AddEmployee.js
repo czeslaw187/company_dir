@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form'
+import { useDispatch } from "react-redux";
+import { fetchDepartments, fetchLocations, addNewEmployee, fetchAllUsers } from "../../lib/userSlice";
 
 function AddEmployee({onChange, input, users}) {
     const [drop,setDrop] = useState(false)
-    console.log(users,'users')
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(fetchDepartments())
+        dispatch(fetchLocations())
+    },[])
+
     const {
         register,
         handleSubmit,
@@ -17,7 +25,9 @@ function AddEmployee({onChange, input, users}) {
       })
     const onSubmit =()=> {
         console.log(input)
+        dispatch(addNewEmployee(input))
         reset()
+        dispatch(fetchAllUsers())
     }     
     return ( 
         <div>
