@@ -21,7 +21,7 @@ function Locations() {
     
     const dispatch = useDispatch()
     const locations = useSelector(state=>state.users.locations)
-    const users = useSelector(state=>state.users)
+    const users = useSelector(state=>state.users.users)
     const departments = useSelector(state=>state.users.departments)
     
     useEffect(()=>{
@@ -56,11 +56,12 @@ function Locations() {
 
             <div className="w-full h-fit">
                 {locations && locations.map((el,id)=>{
+                    let numOfEmps = users.filter(it=>{return it.location == el.name})
                     let numOfDeps = countDepartments(departments.filter(it=>{return it.locationid == el.id}))
                     return (
                         <div key={id} className="w-full h-[3rem] my-2 grid grid-flow-row grid-cols-4 justify-between items-center border-2 rounded-lg shadow-md">
                             <h1 className="text-lg ml-5 my-1">{el.name}</h1>
-                            <h1 className="text-sm my-0 text-center">No Employees: </h1>
+                            <h1 className="text-sm my-0 text-center">No Employees: {numOfEmps.length}</h1>
                             <h1 className="text-sm text-center">No Departments: {numOfDeps}</h1>
                             <div className="mr-3 transition duration-300 ease-in-out hover:scale-125 cursor-pointer text-center">
                                 <button type="button" onClick={()=>{toggle(); setLocId(el.id)}}>

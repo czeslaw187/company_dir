@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react'
 import { fetchAllUsers } from '../lib/userSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-
 import AddEmployee from '../components/Employee/AddEmployee'
 import Warning from '../components/Warning'
+import { deleteOneEmployee } from '../lib/userSlice'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,6 +17,12 @@ export default function Home() {
   const [locId, setLocId] = useState('')
 
   const users = useSelector(state=>state.users)
+
+  const handleDelete =(id)=> {
+    setIsOpen(!isOpen)
+    dispatch(deleteOneEmployee(id))
+    dispatch(fetchAllUsers())
+  }
 
   const onChange =(e)=> {
     const {name, value} = e.target
@@ -39,7 +45,7 @@ export default function Home() {
     <div>
       <AddEmployee onChange={onChange} input={input} users={users}/>
 
-      <Warning warningText={'Are you sure you want to delete that employee ?'} isOpen={isOpen} toggle={toggle} locId={locId}/>
+      <Warning warningText={'Are you sure you want to delete that employee ?'} isOpen={isOpen} handleDelete={handleDelete} toggle={toggle} locId={locId}/>
 
       <div className="w-full h-fit">
                 {users.users && users.users.map((el,id)=>{
@@ -50,7 +56,7 @@ export default function Home() {
                             <h1 className="text-sm ml-5 my-0">{el.department}</h1>
                             <h1 className="text-sm ml-5 my-0">Location: {el.location}</h1>
                             <div className="transition duration-300 ease-in hover:scale-125 cursor-pointer text-center mr-5">
-                                <button type="button" onClick={()=>{toggle(); setLocId(el.id)}}>
+                                <button type="button" onClick={()=>{toggle(); setLocId(el.userid)}}>
                                     <FontAwesomeIcon key={id} icon={faTrash} />
                                 </button>
                             </div>
