@@ -20,9 +20,14 @@ function Locations() {
     }
     
     const dispatch = useDispatch()
+    const locations = useSelector(state=>state.users.locations)
+    const users = useSelector(state=>state.users)
+    const departments = useSelector(state=>state.users.departments)
     
     useEffect(()=>{
-        dispatch(fetchLocations())
+        if (locations.length <= 0) {
+            dispatch(fetchLocations())
+        }
     },[])
     
     const toggle =()=> {
@@ -34,10 +39,6 @@ function Locations() {
         dispatch(deleteOneLocation(id))
         dispatch(fetchLocations())
     }
-
-    const locations = useSelector(state=>state.users.locations)
-    const users = useSelector(state=>state.users)
-    const departments = useSelector(state=>state.users.departments)
     
     const countDepartments =(deps)=> {
         let numb = 0

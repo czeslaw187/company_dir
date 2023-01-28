@@ -2,8 +2,6 @@ import { Inter } from '@next/font/google'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { fetchAllUsers } from '../lib/userSlice'
-import { fetchDepartments } from '../lib/userSlice'
-import { fetchLocations } from '../lib/userSlice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
@@ -18,20 +16,23 @@ export default function Home() {
   const [isOpen,setIsOpen] = useState(false)
   const [locId, setLocId] = useState('')
 
+  const users = useSelector(state=>state.users)
+
   const onChange =(e)=> {
     const {name, value} = e.target
     setInput(values=>({...values, [name]:value}))
   }
 
   useEffect(()=>{
-    dispatch(fetchAllUsers())
+    if (users.users.length <= 0) {
+      dispatch(fetchAllUsers())
+    }
   },[])
 
   const toggle =()=> {
     setIsOpen(!isOpen)
   }
   
-  const users = useSelector(state=>state.users)
   console.log(users,'input')
 
   return (

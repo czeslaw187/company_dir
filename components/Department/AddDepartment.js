@@ -24,7 +24,6 @@ function AddDepartment({onChange, input, deps}) {
     })
     
     const onSubmit =()=> {
-        console.log(input)
         dispatch(addNewDepartment(input.title, input.location))
         reset()
         dispatch(fetchDepartments())
