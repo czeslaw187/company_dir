@@ -40,7 +40,6 @@ function Departments() {
             [name]:value
         }))
     }
-    console.log(deps.departments, deps.users,'deps')
     return ( 
         <div>
             <AddDepartment onChange={onChange} input={input} deps={deps}/>

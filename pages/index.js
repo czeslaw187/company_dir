@@ -39,8 +39,6 @@ export default function Home() {
     setIsOpen(!isOpen)
   }
   
-  console.log(users,'input')
-
   return (
     <div>
       <AddEmployee onChange={onChange} input={input} users={users}/>
