@@ -6,11 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteOneLocation } from "../lib/userSlice";
 import Warning from "../components/Warning";
+import Alert from '../components/Alert'
 
 function Locations() {
     const [input,setInput] = useState({})
     const [isOpen,setIsOpen] = useState(false)
     const [locId,setLocId] = useState('')
+    const [empNum,setEmpNum] = useState([])
+    const [depsNum,setDepsNum] = useState(0)
     const onChange =(e)=> {
         const {name, value} = e.target
         setInput(values=>({
@@ -51,12 +54,19 @@ function Locations() {
     return ( 
         <div>
             <AddLocation onChange={onChange} input={input} fetchLocations={fetchLocations} />
-            <Warning warningText={'Are you sure you want to delete that location ?'} 
+            
+            {   
+            
+                empNum <= 0 && depsNum <= 0 ?
+                <Warning warningText={'Are you sure you want to delete that location ?'} 
                      isOpen={isOpen} 
                      toggle={toggle} 
                      handleDelete={handleDelete} 
                      locId={locId} 
-            />
+                /> : 
+                <Alert message={'Can not delete location with active employees or departments'} isOpen={isOpen} toggle={toggle}/>
+            }
+
             <div className="w-full h-fit">
                 {locations && locations.map((el,id)=>{
                     let numOfEmps = users.filter(it=>{return it.location == el.name})
@@ -67,7 +77,7 @@ function Locations() {
                             <h1 className="text-sm my-0 text-center">No Employees: {numOfEmps.length}</h1>
                             <h1 className="text-sm text-center">No Departments: {numOfDeps}</h1>
                             <div className="mr-3 transition duration-300 ease-in-out hover:scale-125 cursor-pointer text-center">
-                                <button type="button" onClick={()=>{toggle(); toggleAlert(); setLocId(el.id)}}>
+                                <button type="button" onClick={()=>{toggle(); setLocId(el.id); setEmpNum(numOfEmps); setDepsNum(numOfDeps)}}>
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
                             </div>

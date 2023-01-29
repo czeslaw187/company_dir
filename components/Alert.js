@@ -1,16 +1,19 @@
-import {Modal, ModalHeader, ModalBody} from 'reactstrap'
+import {Modal, ModalHeader, ModalBody, ModalFooter, Button} from 'reactstrap'
+import {useState} from 'react'
 
-function Alert({message, alertOpen, toggleAlert}) {
-    console.log(alertOpen,'alertopen')
+function Alert({message, toggle, isOpen}) {
     const closeBtn = (
-        <button type="button" className="close" onClick={toggleAlert}>&times;</button>
+        <button type="button" className="close" onClick={toggle}>&times;</button>
     )
     return ( 
-        <Modal isOpen={alertOpen} toggle={toggleAlert} backdrop={true}>
-            <ModalHeader toggle={toggleAlert} close={closeBtn}></ModalHeader>
+        <Modal isOpen={isOpen} toggle={toggle} backdrop={true}>
+            <ModalHeader toggle={toggle} close={closeBtn}></ModalHeader>
             <ModalBody>
                 <h1 className="text-2xl">{message}</h1>
             </ModalBody>
+            <ModalFooter>
+                <Button color="info" type="close" onClick={toggle}>OK</Button>
+            </ModalFooter>
         </Modal>
      );
 }

@@ -6,11 +6,13 @@ import Warning from "../components/Warning";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteOneDepartment } from "../lib/userSlice";
+import Alert from "../components/Alert";
 
 function Departments() {
     const [input,setInput] = useState({})
     const [isOpen,setIsOpen] = useState(false)
     const [locId, setLocId] = useState('')
+    const [empNum,setEmpNum] = useState([])
     const dispatch = useDispatch()
 
     const handleDelete =(id)=> {
@@ -43,7 +45,19 @@ function Departments() {
         <div>
             <AddDepartment onChange={onChange} input={input} deps={deps}/>
 
-            <Warning warningText={'Are you sure you want to delete that department ?'} isOpen={isOpen} toggle={toggle} handleDelete={handleDelete} locId={locId}/>
+            {
+                empNum <= 0 ?
+                <Warning warningText={'Are you sure you want to delete that department ?'} 
+                     isOpen={isOpen} 
+                     toggle={toggle} 
+                     handleDelete={handleDelete} 
+                     locId={locId}
+                /> :
+                <Alert message={'Can not delete department with active employees'} 
+                       isOpen={isOpen} 
+                       toggle={toggle}
+                />
+            }
 
             <div className="w-full h-fit">
                 {deps.departments && deps.departments.map((el,id)=>{
@@ -54,7 +68,7 @@ function Departments() {
                             <h1 className="text-sm my-0 text-center">Number of employees: {numOfEmps.length}</h1>
                             <h1 className="text-sm ml-5 my-0 text-justify">Location: {el.location}</h1>
                             <div className="transition duration-300 ease-in hover:scale-125 cursor-pointer text-center mr-5">
-                                <button type="button" onClick={()=>{toggle(); setLocId(el.depid)}}>
+                                <button type="button" onClick={()=>{toggle(); setLocId(el.depid); setEmpNum(numOfEmps)}}>
                                     <FontAwesomeIcon key={id} icon={faTrash} />
                                 </button>
                             </div>
