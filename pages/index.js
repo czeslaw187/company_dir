@@ -11,6 +11,7 @@ import { deleteOneEmployee } from '../lib/userSlice'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  console.log(process.env.NEXT_PUBLIC_URL,'url')
   const dispatch = useDispatch()
   const [input,setInput] = useState('')
   const [isOpen,setIsOpen] = useState(false)
