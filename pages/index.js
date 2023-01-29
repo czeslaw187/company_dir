@@ -21,7 +21,6 @@ export default function Home() {
   const handleDelete =(id)=> {
     setIsOpen(!isOpen)
     dispatch(deleteOneEmployee(id))
-    dispatch(fetchAllUsers())
   }
 
   const onChange =(e)=> {

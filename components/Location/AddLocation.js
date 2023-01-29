@@ -19,10 +19,8 @@ function AddLocation({onChange, input, fetchLocations}) {
     })
 
     const onSubmit =()=> {
-        console.log(input)
         dispatch(addNewLocation(input.location))
         reset()
-        dispatch(fetchLocations())
     }
     return ( 
         <div>

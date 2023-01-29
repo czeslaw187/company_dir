@@ -24,10 +24,8 @@ function AddEmployee({onChange, input, users}) {
         }
       })
     const onSubmit =()=> {
-        console.log(input)
         dispatch(addNewEmployee(input))
         reset()
-        dispatch(fetchAllUsers())
     }     
     return ( 
         <div>

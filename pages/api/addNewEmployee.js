@@ -6,7 +6,7 @@ export default async function addEmployee(req, res) {
     await client.connect()
     try {
         let id = await client.query('INSERT INTO users (id, name, email, departmentid, locationid) VALUES (DEFAULT, $1, $2, $3, $4) RETURNING id',[name, email, departmentid, locationid])
-        res.json({message: 'ok', id: id})
+        res.json({message: 'ok', id: id.rows[0].id})
     } catch (error) {
         return res.json({message: error.message})
     } finally {

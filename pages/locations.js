@@ -30,7 +30,6 @@ function Locations() {
     const handleDelete =(id)=> {
         setIsOpen(!isOpen)
         dispatch(deleteOneLocation(id))
-        dispatch(fetchLocations())
     }
     
     useEffect(()=>{

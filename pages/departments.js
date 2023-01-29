@@ -18,15 +18,12 @@ function Departments() {
     const handleDelete =(id)=> {
         setIsOpen(!isOpen)
         dispatch(deleteOneDepartment(id))
-        dispatch(fetchDepartments())
     }
 
     const deps = useSelector(state=>state.users)
 
     useEffect(()=>{
-        if (deps.departments.length <= 0) {
-            dispatch(fetchDepartments())
-        }
+        dispatch(fetchDepartments())
     },[])
 
     const toggle =()=> {
